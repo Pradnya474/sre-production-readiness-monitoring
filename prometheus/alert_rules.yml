@@ -1,0 +1,25 @@
+groups:
+  - name: service-alerts
+    rules:
+      - alert: APIUnavailable
+        expr: up{job="sample-orders-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Sample Orders API is unavailable"
+          description: "Prometheus cannot scrape the API target for more than one minute."
+
+      - alert: HighHTTPErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{job="sample-orders-api",status=~"5.."}[5m]))
+            /
+            clamp_min(sum(rate(http_requests_total{job="sample-orders-api"}[5m])), 0.001)
+          ) > 0.10
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "HTTP 5xx error rate is above 10%"
+          description: "More than 10% of observed requests returned 5xx responses over five minutes."
