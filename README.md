@@ -114,19 +114,11 @@ docker compose config
 docker compose down
 ```
 
-## Interview explanation
 
-"I built a local SRE observability lab for a containerized Flask service. I exposed health and readiness endpoints, instrumented request count and latency metrics, scraped those metrics with Prometheus, and provisioned a Grafana dashboard. I added alert rules for service availability and elevated HTTP 5xx responses. I also documented SLI/SLO examples, operational runbooks, and failure-injection exercises so I could practice detection, diagnosis, recovery, and post-incident review."
-
-## Resume bullets (use only after completing the work)
-
-- Built a Dockerized REST service with health/readiness probes and Prometheus instrumentation.
-- Configured Prometheus scraping, alert rules, and Grafana dashboard provisioning for service observability.
-- Practiced incident scenarios including service unavailability and elevated HTTP 5xx errors; documented investigation and recovery steps.
-- Defined example SLIs/SLOs and created an incident runbook and postmortem template.
 
 ## Cleanup
 
 ```bash
 docker compose down -v
 ```
+Author-Pradnya Gaikwad
